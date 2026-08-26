@@ -58,3 +58,40 @@ int main()
 
     printf("Enter generator (g): ");
     scanf("%lld", &g);
+
+    printf("Enter Sudhi's private key: ");
+    scanf("%lld", &privateKeyA);
+
+    publicKeyA = modExp(g, privateKeyA, p);
+
+    printf("Sudhi's Public Key = %lld\n", publicKeyA);
+
+    printf("Enter message to encrypt: ");
+    scanf("%lld", &message);
+
+    printf("Enter random value k: ");
+    scanf("%lld", &k);
+
+    c1 = modExp(g, k, p);
+    c2 = (message * modExp(publicKeyA, k, p)) % p;
+
+    printf("\nEncrypted Cipher Text:\n");
+    printf("C1 = %lld\n", c1);
+    printf("C2 = %lld\n", c2);
+
+    decryptedMessage =
+        (c2 * modExp(c1, p - 1 - privateKeyA, p)) % p;
+
+    printf("\nDecrypted Message = %lld\n", decryptedMessage);
+
+    return 0;
+}
+```
+
+## Output:
+<img width="1890" height="1017" alt="Screenshot 2026-08-26 204615" src="https://github.com/user-attachments/assets/d3a8291a-1923-4b56-b9d2-5c74183bc33f" />
+
+
+
+## Result:
+The program is executed successfully.
